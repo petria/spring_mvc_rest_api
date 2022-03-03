@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Getting Started: Serving Web Content</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<h1>homepage!!</h1>
+
+<p id="response"></p>
+
+<script>
+    console.log('Javasript working?');
+
+    var elem = document.querySelector('#response');
+
+    function button_pressed() {
+        console.log('Button pressed!');
+        fetch('http://localhost:8080/rest/get_json_message')
+            .then(response => response.json())
+            .then(data => elem.textContent = data.response);
+
+    }
+
+</script>
+
+<button onclick="button_pressed()">PRESS ME!</button>
+
+</body>
+
+</html>
