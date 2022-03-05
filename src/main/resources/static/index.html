@@ -8,6 +8,11 @@
   ></script>
 </head>
 <body>
+
+<a href="/contact_info">Try new Contact Info page!</a>
+<br>
+
+
 <!-- HTML-->
 <form id="contact-form">
   <label for="name">Name</label>
@@ -37,6 +42,9 @@
         e.preventDefault();
         const myForm = document.getElementById('contact-form');
         let formData = new FormData(myForm);
+
+        console.log('>>> formData', formData);
+
         let jsonData = {};
 
         for (const entry of formData.entries()) {

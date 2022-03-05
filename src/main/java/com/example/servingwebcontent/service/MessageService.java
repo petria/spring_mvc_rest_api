@@ -15,6 +15,7 @@ public class MessageService {
     private static long idCount = 0;
 
     public MessageResponse getMessage() {
+
         MessageEntity entity = messageDAO.loadMessageText(++idCount);
         return new MessageResponse(entity.getText());
     }
