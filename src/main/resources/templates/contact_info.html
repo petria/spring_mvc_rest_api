@@ -4,6 +4,10 @@
 
   <script src="/js/custom.js"></script>
 
+  <script src="https://code.jquery.com/jquery-3.6.0.js"
+          integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+          crossorigin="anonymous"></script>
+
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
@@ -16,12 +20,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
           integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
           crossorigin="anonymous"></script>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.js"
-          integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-          crossorigin="anonymous">
-  </script>
-
 
 </head>
 
@@ -37,87 +35,154 @@
 
     <div class="panel-body">
 
-      <div class="input-group">
-        <span class="input-group-addon" style="width: 150px">E-mail</span>
-        <input id="email" type="text" class="form-control" placeholder="user@example.com"
-               aria-describedby="basic-addon1">
+
+      <form class="form-horizontal">
+
+        <div id="emailError" class="">
+          <div class="form-group">
+            <label for="email" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="email" placeholder="email">
+              <p id="emailErrorTxt">&nbsp;</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="firstNameError" class="">
+          <div class="form-group">
+            <label for="firstName" class="col-sm-2 control-label">Firstname</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="firstName" placeholder="firstName">
+              <p id="firstNameErrorTxt">&nbsp;</p>
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+      <div class="panel">
+        <div class="panel-body">
+          <button id="button" type="button" class="btn btn-primary">Add contact</button>
+          <button id="button2" type="button" class="btn btn-primary">Test</button>
+        </div>
       </div>
 
+      <script>
 
-      <div class="input-group">
-        <span class="input-group-addon" style="width: 150px">Firstname</span>
-        <input id="firstName" type="text" class="form-control" placeholder="john" aria-describedby="basic-addon1">
-      </div>
+          function setFormFieldError(fieldName, isError, errorText) {
+              const containerDiv = "#".concat(fieldName.concat("Error"));
+              const messageP = "#".concat(fieldName.concat("ErrorTxt"));
 
-      <div class="input-group">
-        <span class="input-group-addon" style="width: 150px">Lastname</span>
-        <input id="lastName" type="text" class="form-control" placeholder="doe" aria-describedby="basic-addon1">
-      </div>
+              console.log('containerDiv', containerDiv);
+              console.log('messageP', messageP);
 
-      <div class="input-group">
-        <span class="input-group-addon" style="width: 150px">Address</span>
-        <input id="address" type="text" class="form-control" placeholder="some street 1"
-               aria-describedby="basic-addon1">
-      </div>
+              if (isError === true) {
+                  console.log('set error');
+                  $(containerDiv).addClass("has-error");
+                  $(messageP).html(errorText);
+              } else {
+                  console.log('clear error');
+                  $(containerDiv).removeClass("has-error");
+                  $(messageP).html(errorText);
+              }
+          }
 
-      <div class="input-group">
-        <span class="input-group-addon" style="width: 150px">Mobile</span>
-        <input id="mobile" type="text" class="form-control" placeholder="+123001234567" aria-describedby="basic-addon1">
-      </div>
+
+          $("#button").click(
+              function () {
+                  console.log("click!");
+                  setFormFieldError('email', true, 'Invalid name!');
+//                  $("#passwdError").addClass("has-error");
+//                  custom_test_alert();
+              }
+          );
+
+          $("#button2").click(
+              function () {
+                  console.log("click!2");
+                  setFormFieldError('email', false, '&nbsp;');
+//                  $("#passwdError").addClass("has-error");
+//                  custom_test_alert();
+              }
+          );
+
+          $("form :input").change(function () {
+              let form = $(this).closest('form');
+              console.log('Changed: ', form);
+          });
+
+      </script>
+
+
     </div>
 
-    <div class="panel">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Contact List</h3>
+      </div>
+
       <div class="panel-body">
-        <button type="button" class="btn btn-primary">Add contact</button>
+
+
+        <table class="table table-striped">
+          <tr>
+            <th>Email</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Address</th>
+            <th>Mobile</th>
+          </tr>
+
+          <!--        <tr>
+                    <td colspan="5">
+                      <i>empty</i>
+                    </td>
+                  </tr>
+          -->
+          <tr>
+            <td>
+              foo@bar
+            </td>
+            <td>
+              first
+            </td>
+            <td>
+              last
+            </td>
+            <td>
+              address 1
+            </td>
+            <td>
+              0434304 43 43
+            </td>
+
+          </tr>
+
+
+          <tr>
+            <td>
+              foo@bar2
+            </td>
+            <td>
+              first2
+            </td>
+            <td>
+              last2
+            </td>
+            <td>
+              address 122
+            </td>
+            <td>
+              220434304 43 43
+            </td>
+
+          </tr>
+        </table>
       </div>
-    </div>
 
-
-  </div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Contact List</h3>
-    </div>
-
-    <div class="panel-body">
-
-
-      <table class="table table-striped">
-        <tr>
-          <th>Email</th>
-          <th>Firstname</th>
-          <th>Lastname</th>
-          <th>Address</th>
-          <th>Mobile</th>
-        </tr>
-
-        <tr>
-          <td colspan="5">
-            <i>empty</i>
-          </td>
-        </tr>
-      </table>
     </div>
 
   </div>
-
-  <!--  <div class="row">
-  <div class="col-3">
-    <button type="button" class="btn btn-default" aria-label="Left Align">
-      <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-    </button>
-
-    <button onclick="custom_test_alert()">Test</button>
-  </div>
-  <div class="col-3">
-    test
-  </div>
-
-</div>
--->
-
-</div>
 
 </body>
 </html>
