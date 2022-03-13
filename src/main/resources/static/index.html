@@ -8,11 +8,6 @@
   ></script>
 </head>
 <body>
-
-<a href="/contact_info">Try new Contact Info page!</a>
-<br>
-
-
 <!-- HTML-->
 <form id="contact-form">
   <label for="name">Name</label>
@@ -29,12 +24,19 @@
 
 <!-- JavaScript -->
 <script>
+    function convertFormToJSON(form) {
+        const array = $(form).serializeArray(); // Encodes the set of form elements as an array of names and values.
+        const json = {};
+        $.each(array, function () {
+            json[this.name] = this.value || "";
+        });
+        return json;
+    }
 
     $("#contact-form").on("submit", function (e) {
         e.preventDefault();
         const myForm = document.getElementById('contact-form');
         let formData = new FormData(myForm);
-
         let jsonData = {};
 
         for (const entry of formData.entries()) {
@@ -57,8 +59,6 @@
         });
 
     });
-
 </script>
-
 </body>
 </html>

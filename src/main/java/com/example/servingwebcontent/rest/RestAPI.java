@@ -1,9 +1,9 @@
 package com.example.servingwebcontent.rest;
 
-import com.example.servingwebcontent.rest.dto.FormPostRequest;
-import com.example.servingwebcontent.rest.dto.FormPostResponse;
-import com.example.servingwebcontent.rest.dto.MessageResponse;
-import com.example.servingwebcontent.service.MessageService;
+import com.example.servingwebcontent.api.service.MessageService;
+import com.example.servingwebcontent.dto.FormPostRequest;
+import com.example.servingwebcontent.dto.FormPostResponse;
+import com.example.servingwebcontent.dto.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
